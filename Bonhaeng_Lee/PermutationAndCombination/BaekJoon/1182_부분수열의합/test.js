@@ -15,17 +15,17 @@ const solution = function (input) {
 
   let cnt = 0;
   // s는 0일 때 sum이 0이면 cnt가 늘어나는 문제를 sum = null로 해결
-  const dfs = function (L, sum = null) {
+  const backtracking = function (L, sum = null) {
     if (sum === s) cnt++;
     // L은 이전 인덱스의 요소를 다시 넣을 수 없도록 함 ( i + 1 전달 )
     for (let i = L; i < n; i++) {
       visited[i] = 1;
-      dfs(i + 1, getSum());
+      backtracking(i + 1, getSum());
       visited[i] = 0;
     }
   };
 
-  dfs(0);
+  backtracking(0);
   console.log(cnt);
   return cnt + "";
 };
