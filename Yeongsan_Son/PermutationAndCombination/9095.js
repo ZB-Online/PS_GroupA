@@ -1,6 +1,7 @@
 const fs = require('fs');
 const input = fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/9095.txt').toString().split('\n').map(Number);
-let [range, ...numbers] = input;
+// let [range, ...numbers] = input;
+const numbers = input.slice(1);
 
 function sol(numbers) {
   let count = 0;
@@ -25,10 +26,7 @@ function sol(numbers) {
     answer.push(count);
   });
 
-  return answer.reduce((acc, curr) => {
-    acc = acc + curr + '\n';
-    return acc;
-  }, '');
+  answer.forEach(el => console.log(el));
 }
 
-console.log(sol(numbers));
+sol(numbers);
