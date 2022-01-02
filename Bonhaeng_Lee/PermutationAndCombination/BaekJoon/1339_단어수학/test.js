@@ -23,7 +23,7 @@ const solution = function (i) {
       .map((v) => digits.find((d) => d[0] === v)[1])
       .join("");
   }
-
+  // BOJ 제출
   console.log(sum);
   return sum + "";
 };
