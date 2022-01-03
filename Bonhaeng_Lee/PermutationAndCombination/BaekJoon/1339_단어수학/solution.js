@@ -7,6 +7,7 @@ const solution = function (i) {
       const ascii = arr[i].charCodeAt(j) - 65;
       const digit = arr[i].length - 1 - j;
       if (digits[ascii] === 0) digits[ascii] = [arr[i][j], Math.pow(10, digit)];
+      // 더 높은 자릿수를 가질수록 더 높은 숫자를 부여 받아야 한다. 따라서 자릿수를 누적해서 저장한다.
       else digits[ascii][1] += Math.pow(10, digit);
     }
   }
