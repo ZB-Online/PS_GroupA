@@ -28,7 +28,7 @@
 
 // sol2 : DP
 const solution = function (s) {
-  const input = s.toString().trim().split("\n").map(Number);
+  const input = s.toString().trim().split('\n').map(Number);
   input.shift();
 
   const dp = [0, 1, 2, 4];
@@ -40,11 +40,11 @@ const solution = function (s) {
     result.push(dp[x]);
   }
   // BOJ 제출
-  console.log(result.join("\n"));
-  return result.join("\n");
+  console.log(result.join('\n'));
+  return result.join('\n');
 };
 
-test("TC1", () => {
+test('TC1', () => {
   expect(
     solution(`3
 4

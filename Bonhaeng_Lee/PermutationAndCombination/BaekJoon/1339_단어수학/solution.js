@@ -1,5 +1,5 @@
 const solution = function (i) {
-  const [n, ...arr] = i.toString().trim().split("\n");
+  const [n, ...arr] = i.toString().trim().split('\n');
   let digits = [...Array(26)].fill(0);
 
   for (let i = 0; i < n; i++) {
@@ -13,37 +13,37 @@ const solution = function (i) {
   }
 
   digits = digits
-    .filter((d) => d)
+    .filter(d => d)
     .sort((a, b) => b[1] - a[1])
     .map((d, i) => (d[0] ? [d[0], 9 - i] : 0));
 
   let sum = 0;
   for (let i = 0; i < n; i++) {
     sum += +arr[i]
-      .split("")
-      .map((v) => digits.find((d) => d[0] === v)[1])
-      .join("");
+      .split('')
+      .map(v => digits.find(d => d[0] === v)[1])
+      .join('');
   }
   // BOJ 제출
   console.log(sum);
-  return sum + "";
+  return sum + '';
 };
 
-test("TC1", () => {
+test('TC1', () => {
   expect(
     solution(`2
 AAA
 AAA`)
-  ).toStrictEqual("1998");
+  ).toStrictEqual('1998');
 });
-test("TC2", () => {
+test('TC2', () => {
   expect(
     solution(`2
 GCF
 ACDEB`)
-  ).toStrictEqual("99437");
+  ).toStrictEqual('99437');
 });
-test("TC3", () => {
+test('TC3', () => {
   expect(
     solution(`10
 A
@@ -56,12 +56,12 @@ G
 H
 I
 J`)
-  ).toStrictEqual("45");
+  ).toStrictEqual('45');
 });
-test("TC4", () => {
+test('TC4', () => {
   expect(
     solution(`2
 AB
 BA`)
-  ).toStrictEqual("187");
+  ).toStrictEqual('187');
 });

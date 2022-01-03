@@ -11,7 +11,7 @@ const solution = function (i) {
     );
   }
   console.log(dp[N]);
-  return dp[N] + "";
+  return dp[N] + '';
 };
 
 // sol2 : top-down
@@ -32,8 +32,8 @@ const solution = function (i) {
 //   return dfs(N).toString();
 // };
 
-test("solution", () => {
-  expect(solution(`2`)).toStrictEqual("1");
+test('solution', () => {
+  expect(solution(`2`)).toStrictEqual('1');
   // expect(solution(`10`)).toStrictEqual('3');
   // expect(solution(`1`)).toStrictEqual("0");
   // expect(solution(`570`)).toStrictEqual("8");
