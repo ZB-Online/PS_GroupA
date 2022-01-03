@@ -5,10 +5,10 @@ const inputArr = input.slice(1);
 
 const solution = (words) => {
     let answer = 0;
-    const nMap = new Map();
-
     let digits = 0;
     let curNum = 9;
+
+    const nMap = new Map();
 
     for (let i = 0; i < len; i += 1) {
         for (let j = 0; j < words[i].length; j += 1) {
@@ -19,11 +19,10 @@ const solution = (words) => {
 
     const sortedMap = new Map(
         [...nMap.entries()].sort((a, b) => {
-            if (b[1] >= a[1]) {
-                return b[1] > a[1] ? 1 : 0;
-            } else {
-                return -1;
+            if (a[1] <= b[1]) {
+                return a[1] < b[1] ? 1 : 0;
             }
+            return -1;
         })
     );
 
