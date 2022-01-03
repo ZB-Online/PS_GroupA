@@ -1,7 +1,7 @@
 const solution = function (input) {
-  const [input1, input2] = input.toString().trim().split("\n");
-  const [n, s] = input1.split(" ").map(Number);
-  const arr = input2.split(" ").map(Number);
+  const [input1, input2] = input.toString().trim().split('\n');
+  const [n, s] = input1.split(' ').map(Number);
+  const arr = input2.split(' ').map(Number);
 
   const visited = [...Array(arr.length)].fill(0);
 
@@ -27,18 +27,18 @@ const solution = function (input) {
 
   backtracking(0);
   console.log(cnt);
-  return cnt + "";
+  return cnt + '';
 };
 
-test("TC1", () => {
+test('TC1', () => {
   expect(
     solution(`5 0
 -7 -3 -2 5 8`)
-  ).toStrictEqual("1");
+  ).toStrictEqual('1');
 });
-test("TC2", () => {
+test('TC2', () => {
   expect(
     solution(`2 -2
 -1 -1`)
-  ).toStrictEqual("1");
+  ).toStrictEqual('1');
 });
