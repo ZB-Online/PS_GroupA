@@ -1,4 +1,4 @@
 module.exports = {
-  testMatch: ["**/?(*.)+(spec|test|solution).[tj]s?(x)"],
-  transformIgnorePatterns: ["<rootDir>/node_modules/"],
+  testMatch: ['**/*.[jt]s?(x)'],
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
 };
