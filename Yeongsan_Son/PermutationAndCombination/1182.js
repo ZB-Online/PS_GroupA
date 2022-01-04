@@ -18,13 +18,13 @@ function sol(arr, s) {
       return;
     }
     temp.push(arr[level]);
-    DFS(level + 1);
+    DFS(level + 1); // 원소를 사용하는 경우
     temp.pop();
-    DFS(level + 1);
+    DFS(level + 1); // 원소를 사용하지 않는 경우
   }
 
   DFS(0);
-
+  // 공집합 제외
   return equaled.filter(el => el.length !== 0).length;
 }
 
