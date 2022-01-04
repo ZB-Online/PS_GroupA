@@ -1,14 +1,11 @@
-const fs = require('fs');
-const input = fs.readFileSync('stdin.txt').toString().split('\n');
+// const fs = require('fs');
+// const input = fs.readFileSync('stdin.txt').toString().split('\n');
 
-const count = input[0];
-const nums = [];
+function solution(s) {
+    const arr = s.toString().trim().split('\n').map(Number);
+    arr.shift();
+    let answer = '';
 
-for (let i = 1; i <= count; i += 1) {
-    nums.push(+input[i]);
-}
-
-function solution(arr) {
     let result = [];
     const elements = [1, 2, 3];
     const getComb = (path, target, sum = 0) => {
@@ -30,11 +27,24 @@ function solution(arr) {
         }
     };
 
-    for (const num of arr) {
+    for (let i = 0; i < arr.length; i++) {
+        const num = arr[i];
         result = [];
         getComb([], num, 0);
-        console.log(result.length);
+        if (i !== arr.length - 1) answer += result.length + '\n';
+        else answer += result.length;
     }
+
+    return answer;
 }
 
-solution(nums);
+test('TC1', () => {
+    expect(
+        solution(`3
+  4
+  7
+  10`)
+    ).toStrictEqual(`7
+44
+274`);
+});

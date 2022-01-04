@@ -1,9 +1,11 @@
-const fs = require('fs');
-const input = fs.readFileSync('stdin.txt').toString().trim().split('\n');
+// const fs = require('fs');
+// const input = fs.readFileSync('stdin.txt').toString().trim().split('\n');
 
-const arr = input.map((el) => +el);
+const solution = (s) => {
+    const input = s.toString().trim().split('\n');
+    const nums = input.map((el) => +el);
 
-const solution = (nums) => {
+    let answer = '';
     const result = [];
     const dfs = (idx, origin, pickNum, target, path) => {
         if (target < 0) return;
@@ -26,9 +28,28 @@ const solution = (nums) => {
 
     result[0]
         .sort((a, b) => a - b)
-        .forEach((el) => {
-            console.log(el);
+        .forEach((el, i) => {
+            if (i !== results[0].length - 1) answer += el + '\n';
+            else answer += el;
         });
 };
 
-solution(arr);
+test('TC1', () => {
+    expect(
+        solution(`20
+7
+23
+19
+10
+15
+25
+8
+13`)
+    ).toStrictEqual(`7
+8
+10
+13
+19
+20
+23`);
+});
