@@ -1,8 +1,6 @@
 // 모든 순열
-const fs = require('fs');
-const input = +fs
-  .readFileSync('./Yeongsan_Son/PermutationAndCombination/10974.txt')
-  .toString();
+// const fs = require('fs');
+// const input = +fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/10974.txt').toString();
 
 function sol(n) {
   let answer = [];
@@ -24,12 +22,24 @@ function sol(n) {
     }
   }
   DFS(0);
-  return answer
-    .map((el) => el.join(' '))
-    .reduce((acc, curr) => {
-      acc = acc + curr + '\n';
-      return acc;
-    }, '');
+  console.log(answer);
+  return answer;
+  // return answer
+  //   .map((el) => el.join(' '))
+  //   .reduce((acc, curr) => {
+  //     acc = acc + curr + '\n';
+  //     return acc;
+  //   }, '');
 }
 
-console.log(sol(input));
+// console.log(sol(input));
+test('TC1', () => {
+  expect(sol(3)).toStrictEqual([
+    [1, 2, 3],
+    [1, 3, 2],
+    [2, 1, 3],
+    [2, 3, 1],
+    [3, 1, 2],
+    [3, 2, 1],
+  ]);
+});
