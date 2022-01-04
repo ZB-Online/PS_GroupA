@@ -1,5 +1,5 @@
-const fs = require('fs');
-const input = fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/2309.txt').toString().split('\n').map(Number);
+// const fs = require('fs');
+// const input = fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/2309.txt').toString().split('\n').map(Number);
 
 // 9명의 난쟁이들의 키의 합에서
 // 9명 중 2명을 선택해 가짜 난쟁이의 키를 뺀 값이 100인 경우
@@ -19,10 +19,14 @@ function sol(arr) {
       }
     }
   }
-  return arr.reduce((acc, curr) => {
-    acc = acc + curr + '\n';
-    return acc;
-  }, '');
+
+  return arr;
+  // .reduce((acc, curr) => {
+  //   acc = acc + curr + '\n';
+  //   return acc;
+  // }, '');
 }
 
-console.log(sol(input));
+test('TC1', () => {
+  expect(sol([20, 7, 23, 19, 10, 15, 25, 8, 13])).toStrictEqual([7, 8, 10, 13, 19, 20, 23]);
+});

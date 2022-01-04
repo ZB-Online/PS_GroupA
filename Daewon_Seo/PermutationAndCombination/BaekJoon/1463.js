@@ -5,10 +5,8 @@
 // 1을 뺀다.
 // 정수 N이 주어졌을 때, 위와 같은 연산 세 개를 적절히 사용해서 1을 만들려고 한다. 연산을 사용하는 횟수의 최솟값을 출력하시오.
 
-const fs = require('fs');
-let input = fs.readFileSync('stdin.txt').toString().split(' ');
-
-const numInput = +input;
+// const fs = require('fs');
+// let input = fs.readFileSync('stdin.txt').toString().split(' ');
 
 const findMin = (num) => {
     const queue = [];
@@ -42,6 +40,21 @@ const findMin = (num) => {
         }
         count++;
     }
+    return count + '';
 };
 
-console.log(findMin(numInput));
+const solution = (s) => {
+    const numInput = +s.toString().split(' ');
+
+    return findMin(numInput);
+};
+
+test('TC1', () => {
+    expect(solution(`2`)).toStrictEqual(1);
+    // expect(solution(`10`)).toStrictEqual('3');
+    // expect(solution(`1`)).toStrictEqual("0");
+    // expect(solution(`570`)).toStrictEqual("8");
+    // expect(solution(`571`)).toStrictEqual("9");
+    // expect(solution(`572`)).toStrictEqual("10");
+    // expect(solution(`842`)).toStrictEqual("11");
+});

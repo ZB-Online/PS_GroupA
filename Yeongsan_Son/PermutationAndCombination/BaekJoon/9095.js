@@ -1,7 +1,7 @@
-const fs = require('fs');
-const input = fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/9095.txt').toString().split('\n').map(Number);
+// const fs = require('fs');
+// const input = fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/9095.txt').toString().split('\n').map(Number);
 // let [range, ...numbers] = input;
-const numbers = input.slice(1);
+// const numbers = input.slice(1);
 
 function sol(numbers) {
   let count = 0;
@@ -26,7 +26,10 @@ function sol(numbers) {
     answer.push(count);
   });
 
-  answer.forEach(el => console.log(el));
+  return answer;
+  // .forEach(el => console.log(el));
 }
 
-sol(numbers);
+test('TC1', () => {
+  expect(sol([4, 7, 10])).toStrictEqual([7, 44, 274]);
+});

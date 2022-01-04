@@ -1,7 +1,11 @@
-const fs = require('fs');
-const input = fs.readFileSync('./Yeongsan_Son/PermutationAndCombination/1182.txt').toString().trim().split('\n');
-const s = +input[0].split(' ')[1];
-const arr = input[1].split(' ').map(Number);
+// const fs = require('fs');
+// const input = fs
+//   .readFileSync('./Yeongsan_Son/PermutationAndCombination/BaekJoon/1182.txt')
+//   .toString()
+//   .trim()
+//   .split('\n');
+// const s = +input[0].split(' ')[1];
+// const arr = input[1].split(' ').map(Number);
 
 // arr의 원소를 가지고 만들 수 있는 모든 부분집합에서
 // 부분집합의 합이 s와 같은 경우
@@ -28,5 +32,6 @@ function sol(arr, s) {
   return equaled.filter(el => el.length !== 0).length;
 }
 
-console.log(sol(arr, s));
-// sol(arr, s);
+test('TC1', () => {
+  expect(sol([-7, -3, -2, 5, 8], 0)).toBe(1);
+});
