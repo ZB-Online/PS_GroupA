@@ -1,5 +1,13 @@
 // 6개 중에서 4개를 선택할 수 있는 경우 → 6C4
 // 사전식 정렬
+// const fs = require('fs');
+// let [len, ...str] = fs
+//   .readFileSync('./Yeongsan_Son/PermutationAndCombination/BaekJoon/1759.txt')
+//   .toString()
+//   .trim()
+//   .split('\n');
+// len = len.split(' ');
+// str = str.join('').split(' ');
 
 function sol(arr, L) {
   arr.sort();
@@ -25,22 +33,24 @@ function sol(arr, L) {
   return answer.filter(el => el.includes('a') || el.includes('i'));
 }
 
-test('TC1', () => {
-  // [a, c, i, s, t, w]
-  expect(sol(['a', 't', 'c', 'i', 's', 'w'], 4)).toStrictEqual([
-    'acis',
-    'acit',
-    'aciw',
-    'acst',
-    'acsw',
-    'actw',
-    'aist',
-    'aisw',
-    'aitw',
-    'astw',
-    'cist',
-    'cisw',
-    'citw',
-    'istw',
-  ]);
-});
+// console.log(sol(str, +len[0]));
+
+// test('TC1', () => {
+//   // [a, c, i, s, t, w]
+//   expect(sol(['a', 't', 'c', 'i', 's', 'w'], 4)).toStrictEqual([
+//     'acis',
+//     'acit',
+//     'aciw',
+//     'acst',
+//     'acsw',
+//     'actw',
+//     'aist',
+//     'aisw',
+//     'aitw',
+//     'astw',
+//     'cist',
+//     'cisw',
+//     'citw',
+//     'istw',
+//   ]);
+// });
