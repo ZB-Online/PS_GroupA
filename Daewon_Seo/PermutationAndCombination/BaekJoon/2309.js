@@ -5,7 +5,6 @@ const solution = (s) => {
     const input = s.toString().trim().split('\n');
     const nums = input.map((el) => +el);
 
-    let answer = '';
     const result = [];
     const dfs = (idx, origin, pickNum, target, path) => {
         if (target < 0) return;
