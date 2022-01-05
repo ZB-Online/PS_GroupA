@@ -1,26 +1,37 @@
 const solution = function (i) {
   const [input1, input2] = i.toString().trim().split('\n');
   const [L, C] = input1.split(' ').map(Number);
-  const arr = input2.split(' ');
-  console.log(L, C, arr);
-  const visited = new Array(L).fill(false);
-  // const alpabet = 'abcdefghijklmnopqrstuvwxyz';
+  const arr = input2.split(' ').sort();
 
-  const validateCode = str => {
-    // 알파벳 "모음"이 2개 이상인지 검사하는 regex
+  // 알파벳 "모음"이 1개 이상인지 검사
+  const validateVowel = str => {
     const m = str.match(/[aeiou]/gi);
-    return m === null ? 0 : m.length;
+    return m !== null && m.length >= 1;
   };
 
-  const combination = (L, temp) => {
-    if (validateCode(temp)) return;
-    for (let i = L; i < C; i++) {
-      visited[i] = true;
-      combination(i + 1, (temp += arr[i]));
-      visited[i] = false;
-    }
+  // 알파벳 "자음"이 2개 이상인지 검사
+  const validateConsonant = str => {
+    const m = str.match(/[^aeiou]/gi);
+    return m !== null && m.length >= 2;
   };
-  combination(0, '');
+
+  function combination(arr, selectNum) {
+    return selectNum === 1
+      ? arr.map(v => [v])
+      : arr.reduce((result, fixed, idx, arr) => {
+          const combinationArr = combination(arr.slice(idx + 1), selectNum - 1);
+          const combineFix = combinationArr.map(v => [fixed, ...v]);
+          return [...result, ...combineFix];
+        }, []);
+  }
+
+  const answer = combination(arr, L)
+    .map(v => v.join(''))
+    .filter(v => validateVowel(v) && validateConsonant(v))
+    .join('\n');
+
+  console.log(answer);
+  return answer;
 };
 
 test('TC1', () => {
