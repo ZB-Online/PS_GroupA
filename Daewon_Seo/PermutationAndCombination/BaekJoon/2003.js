@@ -9,7 +9,7 @@ const solution = (s) => {
     let start = 0,
         end = 0;
 
-    while (start <= end && end <= nums.length) {
+    while (start <= end && end <= len) {
         if (sum === +goal) {
             count++;
             sum -= nums[start];
