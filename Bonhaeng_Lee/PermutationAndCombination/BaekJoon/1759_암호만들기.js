@@ -11,7 +11,7 @@ const solution = function (i) {
 
   // 알파벳 "자음"이 2개 이상인지 검사
   const validateConsonant = str => {
-    const m = str.match(/[^aeiou]/gi);
+    const m = str.match(/[bcdfghjklmnpqrstvwxyz]/gi);
     return m !== null && m.length >= 2;
   };
 
