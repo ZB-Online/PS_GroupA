@@ -33,7 +33,6 @@ const solution = function (i) {
   let ansBlack = 0;
   let ansWhite = 0;
   function dfsBlack(index, cnt) {
-    // 최대 비숍의 개수 갱신
     ansBlack = Math.max(ansBlack, cnt);
     for (let i = index; i < possibleArea.length; i++) {
       const x = possibleArea[i][0];
@@ -51,7 +50,6 @@ const solution = function (i) {
   }
 
   function dfsWhite(index, cnt) {
-    // 최대 비숍의 개수 갱신
     ansWhite = Math.max(ansWhite, cnt);
     for (let i = index; i < possibleArea.length; i++) {
       const x = possibleArea[i][0];
