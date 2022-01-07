@@ -1,7 +1,13 @@
 const solution = (s) => {
-    const input = s.toString().trim().split('\n');
-    const [len, goal] = input[0].split(' ');
-    const nums = input[1].split(' ').map((el) => +el);
+    const input = s
+        .toString()
+        .trim()
+        .split('\n')
+        .map((el) => el.split(' ').map(Number));
+    const [[len, goal], nums] = input;
+
+    // const [len, goal] = input[0].split(' ');
+    // const nums = input[1].split(' ').map((el) => +el);
 
     let count = 0;
     let sum = 0;

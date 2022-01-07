@@ -1,7 +1,7 @@
 const solution = (s) => {
     const input = +s.toString().trim();
 
-    const result = [];
+    // const result = [];
 
     const dfs = (idx, num, slate) => {
         // backtarcking case
@@ -36,8 +36,8 @@ const solution = (s) => {
     return result.length + '';
 };
 
-// solution(`8`);
+solution(`8`);
 
-test('TC1', () => {
-    expect(solution(`8`)).toStrictEqual(`92`);
-});
+// test('TC1', () => {
+//     expect(solution(`8`)).toStrictEqual(`92`);
+// });
