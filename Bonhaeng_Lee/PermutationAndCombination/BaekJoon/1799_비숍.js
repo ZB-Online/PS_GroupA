@@ -32,10 +32,10 @@ const solution = function (i) {
 
   let ansBlack = 0;
   let ansWhite = 0;
-  function dfsBlack(ind, cnt) {
+  function dfsBlack(index, cnt) {
     // 최대 비숍의 개수 갱신
     ansBlack = Math.max(ansBlack, cnt);
-    for (let i = ind; i < possibleArea.length; i++) {
+    for (let i = index; i < possibleArea.length; i++) {
       const x = possibleArea[i][0];
       const y = possibleArea[i][1];
       // '짝수 행'인 경우 → 열의 인덱스 짝수
@@ -50,10 +50,10 @@ const solution = function (i) {
     }
   }
 
-  function dfsWhite(ind, cnt) {
+  function dfsWhite(index, cnt) {
     // 최대 비숍의 개수 갱신
     ansWhite = Math.max(ansWhite, cnt);
-    for (let i = ind; i < possibleArea.length; i++) {
+    for (let i = index; i < possibleArea.length; i++) {
       const x = possibleArea[i][0];
       const y = possibleArea[i][1];
       // '짝수 행'인 경우 → 열의 인덱스 홀수
