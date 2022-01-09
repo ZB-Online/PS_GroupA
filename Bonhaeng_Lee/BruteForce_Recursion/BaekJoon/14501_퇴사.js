@@ -13,7 +13,7 @@ const solution = function (i) {
       return;
     }
 
-    // 매일마다(매 idx마다) 2가지 경우가 있음
+    // 매 idx마다(꼭 하루씩 이동하진 않으므로 매일마다는 아님) 2가지 경우가 있음
     const [time, cost] = consultations[idx];
     if (idx + time <= N) {
       // 1. 상담 기간의 합이 N보다 작거나 같기 때문에 해당 상담을 진행하는 경우
