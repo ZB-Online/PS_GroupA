@@ -46,3 +46,15 @@ function sol(s) {
 test('TC1', () => {
   expect(sol('8')).toStrictEqual(92);
 });
+test('TC2', () => {
+  expect(sol('4')).toStrictEqual(2);
+});
+test('TC3', () => {
+  expect(sol('5')).toStrictEqual(10);
+});
+test('TC4', () => {
+  expect(sol('6')).toStrictEqual(4);
+});
+test('TC5', () => {
+  expect(sol('7')).toStrictEqual(40);
+});
