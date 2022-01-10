@@ -21,7 +21,8 @@ const solution = (s) => {
 
         for (let i = row; i < size; i++) {
             for (
-                let j = isWhite ? (i % 2 === 0 ? 0 : 1) : i % 2 === 0 ? 1 : 0;
+                let moduler = i % 2 === 0,
+                    j = isWhite ? (moduler ? 0 : 1) : moduler ? 1 : 0;
                 j < size;
                 j += 2
             ) {
@@ -47,20 +48,20 @@ const solution = (s) => {
     console.log(ret + ans);
     return ret + ans + '';
 };
-// solution(`5
-// 1 1 0 1 1
-// 0 1 0 0 0
-// 1 0 1 0 1
-// 1 0 0 0 0
-// 1 0 1 1 1`);
-
-test('TC1', () => {
-    expect(
-        solution(`5
+solution(`5
 1 1 0 1 1
 0 1 0 0 0
 1 0 1 0 1
 1 0 0 0 0
-1 0 1 1 1`)
-    ).toStrictEqual(`7`);
-});
+1 0 1 1 1`);
+
+// test('TC1', () => {
+//     expect(
+//         solution(`5
+// 1 1 0 1 1
+// 0 1 0 0 0
+// 1 0 1 0 1
+// 1 0 0 0 0
+// 1 0 1 1 1`)
+//     ).toStrictEqual(`7`);
+// });
