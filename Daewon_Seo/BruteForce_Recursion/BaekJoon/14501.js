@@ -1,5 +1,3 @@
-const { check } = require('prettier');
-
 const solution = (s) => {
     const [N, ...schedule] = s
         .toString()
@@ -32,7 +30,7 @@ const solution = (s) => {
 
     confirmSchedule(0, 0);
 
-    // console.log(max);
+    console.log(max);
 
     return max + '';
 };

@@ -1,53 +1,50 @@
 const solution = (s) => {
-    const [[N], ...m] = s.toString().trim().split('\n');
+    let [N, ...m] = s.toString().trim().split('\n');
     const grid = m.map((el) => el.split(' ').map((el) => +el));
+
+    N = Number(N);
 
     const teamNum = N / 2;
 
-    const team = Array.from({ length: N }, (_, i) => i);
     const checked = Array.from({ length: N }, () => false);
-
-    const START_TEAM = [];
-    let LINK_TEAM = [];
 
     let min = Number.MAX_SAFE_INTEGER;
 
-    const calTeamPoint = (grid, pickTeam) => {
-        let totalPoint = 0;
-        for (let i = 0; i < pickTeam.length; i++) {
-            for (let j = 0; j < pickTeam.length; j++) {
-                if (i === j) continue;
-                totalPoint += grid[pickTeam[i]][pickTeam[j]];
+    const calDiff = () => {
+        let startPoints = 0;
+        let linkPoints = 0;
+
+        for (let i = 0; i < N - 1; i++) {
+            for (let j = i + 1; j < N; j++) {
+                if (checked[i] && checked[j]) {
+                    startPoints += grid[i][j] + grid[j][i];
+                } else if (!checked[i] && !checked[j]) {
+                    linkPoints += grid[i][j] + grid[j][i];
+                }
             }
         }
 
-        return totalPoint;
+        const diff = Math.abs(startPoints - linkPoints);
+
+        min = min > diff ? diff : min;
     };
 
-    const dfs = (count, idx) => {
+    const getComb = (idx, count) => {
         if (count === teamNum) {
-            LINK_TEAM = team.filter((el) => !START_TEAM.includes(el));
-
-            const startTeamPoint = calTeamPoint(grid, START_TEAM);
-            const linkTeamPoint = calTeamPoint(grid, LINK_TEAM);
-
-            const diff = Math.abs(startTeamPoint - linkTeamPoint);
-
-            min = min > diff ? diff : min;
+            calDiff();
             return;
         }
 
         for (let i = idx; i < N; i++) {
-            if (checked[i]) continue;
-            START_TEAM.push(team[i]);
-            checked[i] = true;
-            dfs(count + 1, idx);
-            START_TEAM.pop();
-            checked[i] = false;
+            if (!checked[i]) {
+                checked[i] = true;
+                getComb(i + 1, count + 1);
+                checked[i] = false;
+            }
         }
     };
 
-    dfs(0, 0);
+    getComb(0, 0);
 
     console.log(min);
 
