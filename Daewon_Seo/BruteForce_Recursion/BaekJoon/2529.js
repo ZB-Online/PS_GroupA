@@ -7,21 +7,58 @@ const solution = (s) => {
     const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     const checked = Array(10).fill(false);
 
-    let curIdx = 0;
-
     const compareValues = (val1, val2, inequality) =>
         inequality === '>' ? val1 > val2 : val1 < val2;
 
-    const result = [];
+    let max = Number.MIN_SAFE_INTEGER;
+    let min = Number.MAX_SAFE_INTEGER;
 
-    const getComb = (arr, pickNum, prefix = []) => {
-        if (pickNum === 0) return [prefix];
+    const dfs = (count, str) => {
+        if (count === N) {
+            max = +max > +str ? max : str;
+            min = +min < +str ? min : str;
+            return;
+        }
+        for (let j = 0; j < 10; j++) {
+            if (checked[j]) continue;
+            const curInequality = inequalities[count];
 
-        return arr.flatMap((v, i) =>
-            getComb(arr.slice(i + 1), pickNum - 1, [...prefix, v])
-        );
+            if (
+                compareValues(str[str.length - 1], nums[j] + '', curInequality)
+            ) {
+                checked[j] = true;
+                dfs(count + 1, str + `${j}`);
+                checked[j] = false;
+            }
+        }
     };
+
+    for (let i = 0; i < nums.length; i++) {
+        checked[i] = true;
+        dfs(0, `${i}`);
+        checked[i] = false;
+    }
+
+    console.log(max, min);
+    return `${max}
+${min}`;
 };
 
-solution(`2
-< >`);
+// solution(`9
+// > < < < > > > < <`);
+
+test('TC1', () => {
+    expect(
+        solution(`2
+< >`)
+    ).toStrictEqual(`897
+021`);
+});
+
+test('TC2', () => {
+    expect(
+        solution(`9
+> < < < > > > < <`)
+    ).toStrictEqual(`9567843012
+1023765489`);
+});
