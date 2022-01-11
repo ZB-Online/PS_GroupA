@@ -12,12 +12,12 @@ function sol(s) {
   let count = 0;
 
   for (let lt = 0; lt < numbers.length; lt++) {
-    let sum = numbers[lt];
-    let rt = lt;
+    let sum = numbers[lt]; // lt -> 1
+    let rt = lt; //
 
-    while (sum < M && rt < len - 1) {
-      rt++;
-      sum += numbers[rt];
+    while (sum < M /* 2 */ && rt < len - 1 /* 3 */) {
+      rt++; // 1번인덱스 2번인덱스
+      sum += numbers[rt]; // 2
     }
 
     if (sum === M) count++;

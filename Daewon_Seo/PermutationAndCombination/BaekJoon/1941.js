@@ -43,9 +43,7 @@ const solution = (s) => {
             let ret = checkConnectCnt(startY, startX) === 7 ? 1 : 0;
 
             while (queue.length) {
-                let [y, x] = queue[0];
-
-                queue.shift();
+                const [y, x] = queue.shift();
                 visited[y][x] = 0;
             }
 
@@ -80,18 +78,18 @@ const solution = (s) => {
     console.log(ans);
     return ans;
 };
-// solution(`YYYYY
-// SYSYS
-// YYYYY
-// YSYYS
-// YYYYY`);
-
-test('TC1', () => {
-    expect(
-        solution(`YYYYY
+solution(`YYYYY
 SYSYS
 YYYYY
 YSYYS
-YYYYY`)
-    ).toStrictEqual(`2`);
-});
+YYYYY`);
+
+// test('TC1', () => {
+//     expect(
+//         solution(`YYYYY
+// SYSYS
+// YYYYY
+// YSYYS
+// YYYYY`)
+//     ).toStrictEqual(`2`);
+// });
