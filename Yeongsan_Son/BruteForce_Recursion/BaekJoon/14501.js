@@ -6,8 +6,21 @@
 */
 
 function sol(s) {
-  const input = s.toString().trim().split('\n');
-  console.log(input);
+  let [N, ...arr] = s.toString().trim().split('\n');
+  N = +N;
+  arr = arr.map(el => el.split(' ').map(Number));
+  const temp = Array.from({ length: N }, () => 0);
+
+  for (let i = 0; i < N; i++) {
+    const [period, profit] = arr[i];
+    if (i + period > N) continue;
+    temp[i] = temp[i] + profit;
+
+    for (let j = i + period; j < N; j++) {
+      temp[j] = Math.max(temp[j], temp[i]);
+    }
+  }
+  return Math.max(...temp);
 }
 
 test('TC1', () => {

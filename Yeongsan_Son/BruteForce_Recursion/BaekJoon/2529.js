@@ -1,5 +1,5 @@
 function sol(s) {
-  const input = s.toString().trim().split('\n');
+  let input = s.toString().trim().split('\n');
   console.log(input);
 }
 
