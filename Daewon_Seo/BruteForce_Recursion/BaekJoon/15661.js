@@ -24,7 +24,7 @@ const solution = (s) => {
 
         const diff = Math.abs(startPoints - linkPoints);
 
-        min = min > diff ? diff : min;
+        min = Math.min(min, diff);
     };
 
     const getComb = (idx, count, teamNum) => {

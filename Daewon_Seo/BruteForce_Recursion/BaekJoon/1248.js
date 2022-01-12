@@ -1,6 +1,6 @@
 const solution = (s) => {
     let [N, ...m] = s.toString().trim().split('\n');
-    const [sumArr] = m.map((el) => el.split(''));
+    const [signArr] = m.map((el) => el.split(''));
 
     N = Number(N);
 
@@ -9,15 +9,19 @@ const solution = (s) => {
         10,
     ];
 
-    const getComb = (arr, pickNum, prefix = []) => {
-        if (pickNum === 0) return [prefix];
+    const usedArr = Array(N).fill(0);
+    const sumArr = [];
+    const checked = Array(nums.length).fill(false);
 
-        return arr.flatMap((v, i) =>
-            getComb(arr.slice(i + 1), pickNum - 1, [...prefix, v])
-        );
-    };
+    // const dfs = (count, comb) => {
+    //     if(count === )
+    // }
 
-    console.log(getComb(nums, N));
+    // for (let i = 0; i < nums.length; i++) {
+    //     checked[i] = true;
+    //     dfs(0, []);
+    //     checked[i] = false;
+    // }
 };
 
 solution(`4
