@@ -12,7 +12,7 @@ const solution = function (i) {
     // 0행부터 찾으려는 idx까지
     for (let i = 0; i <= idx; i++) {
       let sum = 0;
-      // i행에 따라 각 열의 합을 구한다.
+      // i행에 따라 합을 구하기 위한 구간이 달라짐
       for (let j = i; j <= idx; j++) {
         sum += result[j];
         // 부호가 다르면 유효하지 않음
@@ -26,7 +26,7 @@ const solution = function (i) {
   const backtracking = idx => {
     if (idx === N) {
       console.log(result.join(' '));
-      // BOJ 제출 : backtacking의 남은 콜스택을 무시하고 원하는 값만 출력한 뒤 solution() 탈출
+      // BOJ 제출 : backtracking의 남은 콜스택을 무시하고 원하는 값만 출력한 뒤 solution() 탈출
       process.exit();
     }
     for (let i = -10; i <= 10; i++) {
