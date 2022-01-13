@@ -1,6 +1,42 @@
-function sol(s) {}
+function sol(s) {
+  const input = s.toString().trim().split('\n');
+  const [N, M] = input[0].split(' ').map(Number);
+  const sequence = input[1].split(' ').map(Number);
+  sequence.sort((a, b) => a - b);
 
-test('TC1', () => {
+  const result = [];
+  const temp = [];
+  const check = Array.from({ length: N }, () => 0);
+
+  function dfs(l) {
+    if (l === M) {
+      result.push(temp.slice());
+      return;
+    } else {
+      for (let i = 0; i < N; i++) {
+        if (!check[i]) {
+          check[i] = 1;
+          temp.push(sequence[i]);
+          dfs(l + 1);
+          temp.pop();
+          check[i] = 0;
+        }
+      }
+    }
+  }
+
+  dfs(0);
+  // console.log(result);
+  return result
+    .map(el => el.join(' '))
+    .reduce((acc, curr) => {
+      acc += curr + '\n';
+      return acc;
+    }, '')
+    .trim();
+}
+
+test('TC1: 3개 중에서 1개 선택', () => {
   expect(
     sol(`3 1
 4 5 2`)
@@ -9,7 +45,7 @@ test('TC1', () => {
 5`);
 });
 
-test('TC2', () => {
+test('TC2: 4개 중에서 2개 선택', () => {
   expect(
     sol(`4 2
 9 8 7 1`)
@@ -27,7 +63,7 @@ test('TC2', () => {
 9 8`);
 });
 
-test('TC3', () => {
+test('TC3: 4개 중에서 4개 선택', () => {
   expect(
     sol(`4 4
 1231 1232 1233 1234`)
