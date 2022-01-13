@@ -1,6 +1,6 @@
 const solution = (s) => {
     let [N, ...m] = s.toString().trim().split('\n');
-    const [sumArr] = m.map((el) => el.split(''));
+    const [inputSigns] = m.map((el) => el.split(''));
 
     N = Number(N);
 
@@ -9,15 +9,45 @@ const solution = (s) => {
         10,
     ];
 
-    const getComb = (arr, pickNum, prefix = []) => {
-        if (pickNum === 0) return [prefix];
+    const signArr = Array.from({ length: N }, () =>
+        Array.from({ length: N }, () => 0)
+    );
 
-        return arr.flatMap((v, i) =>
-            getComb(arr.slice(i + 1), pickNum - 1, [...prefix, v])
-        );
+    let curIdx = 0;
+
+    for (let i = 0; i < signArr.length; i++) {
+        for (let j = i; j < signArr.length; j++) {
+            signArr[i][j] = inputSigns[curIdx++];
+        }
+    }
+
+    const result = [];
+
+    const check = (idx) => {
+        for (let i = 0; i <= idx; i++) {
+            let sum = 0;
+            for (let j = i; j <= idx; j++) {
+                sum += result[j];
+                if (signArr[i][j] !== (sum === 0 ? '0' : sum > 0 ? '+' : '-'))
+                    return false;
+            }
+        }
+        return true;
     };
 
-    console.log(getComb(nums, N));
+    const dfs = (cnt) => {
+        if (cnt === N) {
+            console.log(result.join(' '));
+            process.exit();
+        }
+
+        for (let i = 0; i < nums.length; i++) {
+            result[cnt] = nums[i];
+            if (check(cnt)) dfs(cnt + 1);
+        }
+    };
+
+    dfs(0);
 };
 
 solution(`4
