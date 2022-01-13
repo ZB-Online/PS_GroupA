@@ -1,5 +1,5 @@
 function sol(s) {
-  let [N, M] = s.toString().trim().split(' ').map(Number);
+  const [N, M] = s.toString().trim().split(' ').map(Number);
   const sequence = Array.from({ length: N }, (_, idx) => idx + 1);
   const result = getPermutations(sequence, M);
   return result
