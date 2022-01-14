@@ -16,7 +16,7 @@ const solution = function (i) {
             const invalidRow = nx < 0 || nx >= N;
             const invalidCol = ny < 0 || ny >= M;
 
-            if (!invalidRow && !invalidCol && checked[nx][ny] === true) {
+            if (!invalidRow && !invalidCol && checked[nx][ny]) {
                 return true;
             }
         }
