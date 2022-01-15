@@ -7,7 +7,7 @@ function sol(s) {
 
   function dfs(l, start) {
     if (l === M) {
-      result.push(temp.slice());
+      result.push(temp.slice()); // 객체 참조이기 때문에, 얕은 복사가 필요
       return;
     } else {
       for (let i = start; i <= N; i++) {
