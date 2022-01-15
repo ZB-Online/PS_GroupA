@@ -31,8 +31,13 @@ const solution = function (i) {
       }
     }
   }
+
+  // no Optimization. O(n^2)
+
+  // Optimization1. Worst O(nlogn), sort() - 120ms
   // pivot과 이보다 더 큰 값을 가진 swapB를 교환한다.
   [givenPerm[pivot], givenPerm[swapB]] = [givenPerm[swapB], givenPerm[pivot]];
+  console.log('37', pivot + 1, givenPerm.slice(pivot + 1, N));
   const answer = [
     ...givenPerm.slice(0, pivot + 1),
     // 최적화 sort 대신 in-place?
@@ -40,17 +45,36 @@ const solution = function (i) {
   ].join(' ');
   console.log(answer);
   return answer;
+
+  // Optimization2. O(n), in-place - 152ms
+  // let K = N - 1;
+  // let idx = pivot + 1;
+  // [givenPerm[pivot], givenPerm[swapB]] = [givenPerm[swapB], givenPerm[pivot]];
+  // while (idx < K) {
+  //   [givenPerm[idx], givenPerm[K]] = [givenPerm[K], givenPerm[idx]];
+  //   ++idx;
+  //   --K;
+  // }
+
+  // console.log(givenPerm.join(' '));
+  // return givenPerm.join(' ');
 };
 
-test('TC1', () => {
+// test('TC1', () => {
+//   expect(
+//     solution(`4
+// 1 2 3 4`)
+//   ).toStrictEqual(`1 2 4 3`);
+// });
+// test('TC2', () => {
+//   expect(
+//     solution(`5
+// 5 4 3 2 1`)
+//   ).toStrictEqual(-1);
+// });
+test('TC3', () => {
   expect(
-    solution(`4
-1 2 3 4`)
-  ).toStrictEqual(`1 2 4 3`);
-});
-test('TC2', () => {
-  expect(
-    solution(`5
-5 4 3 2 1`)
-  ).toStrictEqual(-1);
+    solution(`3
+2 3 1`)
+  ).toStrictEqual('3 1 2');
 });
