@@ -1,4 +1,7 @@
-function sol(s) {}
+function sol(s) {
+  const input = s.toString().trim().split('\n');
+  console.log(input);
+}
 
 test('TC1', () => {
   expect(
