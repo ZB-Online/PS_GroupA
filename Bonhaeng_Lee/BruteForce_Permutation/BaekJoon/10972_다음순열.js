@@ -6,7 +6,7 @@ const solution = function (i) {
     .map((input, i) => (i === 0 ? +input : input.split(' ').map(Number)));
   let pivot = -1;
   // 맨 뒤에서부터 시작해서 오름차순이 끊기는 부분을 찾는다.
-  for (let i = givenPerm.length - 1; i > 0; i--) {
+  for (let i = N - 1; i > 0; i--) {
     if (givenPerm[i - 1] < givenPerm[i]) {
       pivot = i - 1;
       break;
