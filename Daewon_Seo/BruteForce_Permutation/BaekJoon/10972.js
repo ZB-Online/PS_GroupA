@@ -1,5 +1,5 @@
 const solution = (input) => {
-    let [N, target] = input
+    const [N, target] = input
         .toString()
         .trim()
         .split('\n')
