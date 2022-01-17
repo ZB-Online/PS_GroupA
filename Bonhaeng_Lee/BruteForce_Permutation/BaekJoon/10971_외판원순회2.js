@@ -1,39 +1,33 @@
 const solution = function (i) {
-  const [N, ...A] = i
+  const [N, ...Weight] = i
     .toString()
     .trim()
     .split('\n')
     .map((v, i) => (i === 0 ? +v : v.split(' ').map(Number)));
   const visit = [...Array(N)].fill(false);
 
-  const getSum = arr => {
-    let sum = 0;
-    for (let i = 0; i < N - 1; i++) {
-      // A[arr[i]][arr[i+1] 접근했을 때 0이 나오면 길이 없는 것이므로 경로에서 제외
-      if (A[arr[i]][arr[i + 1]] === 0) return Number.MAX_SAFE_INTEGER;
-      sum += A[arr[i]][arr[i + 1]];
-    }
-    sum += A[arr[N - 1]][arr[0]];
-    return sum;
-  };
-
   let min = Number.MAX_SAFE_INTEGER;
-  const permutation = (perm, L) => {
-    if (L === N) {
-      min = Math.min(min, getSum(perm));
+  const backtracking = (cost, start, current, depth) => {
+    if (depth === N && Weight[current][start] !== 0) {
+      // 현재 기준 최솟값과 순회 완료되었을 때의 최솟값을 비교한다.
+      min = Math.min(min, cost + Weight[current][start]);
       return;
     }
-    for (let i = 0; i < N; i++) {
-      if (!visit[i]) {
-        visit[i] = true;
-        perm[L] = i;
-        permutation(perm, L + 1);
-        visit[i] = false;
+    // 0번째 고정이므로 i : 1 ~ N-1
+    for (let i = 1; i < N; i++) {
+      if (!visit[i] && Weight[current][i] !== 0) {
+        // 순회 중에 최소값을 넘어가면 순회를 멈춘다.
+        if (cost + Weight[current][i] < min) {
+          visit[i] = true;
+          backtracking(cost + Weight[current][i], start, i, depth + 1);
+          visit[i] = false;
+        }
       }
     }
   };
-
-  permutation([], 0);
+  // 0번째는 방문처리 후 고정해둠 - 방문처리 안해도 비용 계산에는 영향을 주지 않는다.
+  visit[0] = true;
+  backtracking(0, 0, 0, 1);
   console.log(min);
   return min;
 };
