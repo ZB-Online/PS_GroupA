@@ -3,62 +3,49 @@ const solution = (s) => {
     const [pickNum, len] = input[0].split(' ').map((el) => +el);
     const alphs = input[1].split(' ').sort((a, b) => a.localeCompare(b));
 
-    console.log(alphs);
-
-    const results = [];
+    let res = '';
 
     const vowels = ['a', 'e', 'i', 'o', 'u'];
 
-    const dfs = (idx, path, pick, used) => {
-        if (idx === pick) {
-            const vowelsNum = [...path].filter((el) =>
-                vowels.includes(el)
-            ).length;
-
-            if (vowelsNum && path.length - vowelsNum >= 2)
-                results.push([...path].join(''));
+    const getComb = (arr, pick, prefix = []) => {
+        if (pick === 0) {
+            const vowelArr = prefix.filter((alph) => vowels.includes(alph));
+            if (vowelArr.length >= 1 && prefix.length - vowelArr.length >= 2)
+                res += `${prefix.join('')}\n`;
             return;
         }
-
-        for (let i = idx; i < alphs.length; i++) {
-            if (used[i]) continue;
-            if (path.length) {
-                if (path.slice(-1)[0].charCodeAt(0) > alphs[i].charCodeAt(0))
-                    continue;
-            }
-            path.push(alphs[i]);
-
-            used[i] = true;
-            dfs(idx + 1, path, pick, used);
-            path.pop();
-            used[i] = false;
-        }
+        return arr.flatMap((v, i) =>
+            getComb(arr.slice(i + 1), pick - 1, [...prefix, v])
+        );
     };
 
-    dfs(0, [], pickNum, Array(len).fill(false));
-    console.log(results.join('\n'));
-    return results.join('\n');
+    getComb(alphs, pickNum);
+
+    res = res.slice(0, -1);
+
+    console.log(res);
+    return res;
 };
 
-solution(`4 6
-a t c i s w`);
+// solution(`4 6
+// a t c i s w`);
 
-// test('TC1', () => {
-//     expect(
-//         solution(`4 6
-// a t c i s w`)
-//     ).toStrictEqual(`acis
-// acit
-// aciw
-// acst
-// acsw
-// actw
-// aist
-// aisw
-// aitw
-// astw
-// cist
-// cisw
-// citw
-// istw`);
-// });
+test('TC1', () => {
+    expect(
+        solution(`4 6
+a t c i s w`)
+    ).toStrictEqual(`acis
+acit
+aciw
+acst
+acsw
+actw
+aist
+aisw
+aitw
+astw
+cist
+cisw
+citw
+istw`);
+});
