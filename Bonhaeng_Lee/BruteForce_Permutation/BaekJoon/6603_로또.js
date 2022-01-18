@@ -4,22 +4,16 @@ const solution = function (i) {
 
   const result = [];
   for (const tc of TC) {
-    // K개로 이루어진 집합 S에서 6개를 고르는 모든 방법을 구한다.
     const [K, ...S] = tc.split(' ').map(Number);
-    const visited = new Array(K).fill(false);
+
     const DFS = (comb, idx, depth) => {
       if (depth === 6) {
         result.push(comb.join(' '));
         return;
       }
       for (let i = idx; i < K; i++) {
-        if (!visited[i]) {
-          visited[i] = true;
-          comb[depth] = S[i];
-          DFS(comb, i + 1, depth + 1);
-          visited[i] = false;
-          comb.pop();
-        }
+        comb[depth] = S[i];
+        DFS(comb, i + 1, depth + 1);
       }
     };
 
@@ -32,7 +26,7 @@ const solution = function (i) {
   return result.join('\n');
 };
 
-describe('로또', () => {
+describe('로또(조합)', () => {
   it('TC1', () => {
     expect(
       solution(`7 1 2 3 4 5 6 7
