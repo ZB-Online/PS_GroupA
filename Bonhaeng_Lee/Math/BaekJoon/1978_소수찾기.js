@@ -1,6 +1,6 @@
 const solution = function (i) {
   let answer = 0;
-  const nums = i.toString().split('\n')[1].split(' ').map(Number);
+  const [N, ...inputs] = i.toString().trim().split(/\s/).map(Number);
 
   function isPrime(num) {
     if (num <= 1) return false;
@@ -12,7 +12,7 @@ const solution = function (i) {
     return true;
   }
 
-  for (const x of nums) {
+  for (const x of inputs) {
     if (isPrime(x)) answer++;
   }
   console.log(answer);
