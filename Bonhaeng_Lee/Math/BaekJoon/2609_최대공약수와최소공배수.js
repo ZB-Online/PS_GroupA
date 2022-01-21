@@ -1,18 +1,23 @@
 const solution = function (i) {
-  const [A, B, C] = i.toString().trim().split(' ').map(Number);
-  const A_C = A % C;
-  const B_C = B % C;
-  console.log((A + B) % C);
-  console.log((A_C + B_C) % C);
-  console.log((A * B) % C);
-  console.log((A_C * B_C) % C);
+  const [A, B] = i.toString().trim().split(' ').map(Number);
+  // 유클리드 호제법을 이용하여 최대공약수를 구한다.
+  function gcd(a, b) {
+    return b === 0 ? a : gcd(b, a % b);
+  }
+  const div = gcd(A, B);
+  // 최대공약수를 이용하여 최소공배수를 구한다.
+  function lcm(a, b, div) {
+    return (a * b) / div;
+  }
+  const l = lcm(A, B, div);
+
+  const answer = div + '\n' + l;
+  console.log(answer);
 };
 
 describe('최대공약수와최소공배수', () => {
   it('TC1', () => {
-    expect(solution(`5 8 4`)).toStrictEqual(`1
-1
-0
-0`);
+    expect(solution(`24 18`)).toStrictEqual(`6
+72`);
   });
 });
