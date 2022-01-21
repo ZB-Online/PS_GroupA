@@ -13,9 +13,8 @@ const solution = (input) => {
     const res = [];
 
     const dfs = (cnt) => {
-        if (cnt === N) {
-            const cost = grid[res[N - 1]][res[0]];
-            if (cost !== 0) min = Math.min(min, sum + cost);
+        if (cnt === N && grid[res[N - 1]][res[0]] !== 0) {
+            min = Math.min(min, sum + grid[res[N - 1]][res[0]]);
             return;
         }
 
