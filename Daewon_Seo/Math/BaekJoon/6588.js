@@ -47,12 +47,12 @@ const solution = (input) => {
             } else {
                 end -= 1;
             }
+            if (start === end && start + end === target) {
+                res += `${target} = ${start} + ${end}\n`;
+                found = true;
+            }
         }
 
-        if (start === end && start + end === target) {
-            res += `${target} = ${start} + ${end}\n`;
-            found = true;
-        }
         if (!found) {
             res += `Goldbach's conjecture is wrong.\n`;
         }
