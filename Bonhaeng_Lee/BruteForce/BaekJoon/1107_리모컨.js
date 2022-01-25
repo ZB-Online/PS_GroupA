@@ -37,7 +37,9 @@ function solution(i) {
         result = Math.min(result, i.toString().length + Math.abs(i - N));
       }
     }
-  } else {
+  }
+  // 고장난 버튼 없으면 위의 로직을 수행할 필요가 없다.
+  else {
     result = Math.min(result, N.length);
   }
 
