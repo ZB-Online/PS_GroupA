@@ -40,12 +40,12 @@ const solution = function (i) {
 
     return Math.max(max, count);
   }
-
+  // 모든 행과 열의 최대값을 구한다.
   let max = Number.MIN_SAFE_INTEGER;
   for (let i = 0; i < N; i++) {
     max = Math.max(max, checkRow(i), checkCol(i));
   }
-
+  // 사탕을 교환하고 나서 최댓값을 구한다.
   for (let i = 0; i < N; i++) {
     for (let j = 0; j < N; j++) {
       if (j + 1 < N) {
