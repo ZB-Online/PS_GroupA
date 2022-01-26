@@ -10,8 +10,8 @@ const solution = function (i) {
   let result = Number.MIN_SAFE_INTEGER;
   const dx = [0, 0, -1, 1];
   const dy = [-1, 1, 0, 0];
-  function DFS(y, x, cnt, sum, visit) {
-    if (cnt >= 4) {
+  function DFS(y, x, depth, sum, visit) {
+    if (depth >= 4) {
       result = Math.max(result, sum);
       return;
     }
@@ -22,7 +22,7 @@ const solution = function (i) {
 
       if (!(ny < 0 || nx < 0 || ny >= N || nx >= M || visit[ny][nx])) {
         visit[ny][nx] = true;
-        DFS(ny, nx, cnt + 1, sum + matrix[ny][nx], visit);
+        DFS(ny, nx, depth + 1, sum + matrix[ny][nx], visit);
         visit[ny][nx] = false;
       }
     }
