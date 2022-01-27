@@ -1,18 +1,25 @@
 const solution = function (i) {
-  const [E, S, M] = i.toString().trim().split(' ').map(Number);
+  const N = i.toString().trim() * 1;
+  const DP = Array.from({ length: N + 1 }, () => 0);
+
+  DP[1] = 1;
+  DP[2] = 3;
+  for (let i = 3; i <= N; i++) {
+    DP[i] = (DP[i - 1] + 2 * DP[i - 2]) % 10007;
+  }
+
+  console.log(DP[i]);
+  return DP[i];
 };
 
 describe('2xn 타일링 2', () => {
   it('TC1', () => {
-    expect(solution(`1 16 16`)).toStrictEqual(16);
+    expect(solution(`2`)).toStrictEqual(3);
   });
   it('TC2', () => {
-    expect(solution(`1 1 1`)).toStrictEqual(1);
+    expect(solution(`8`)).toStrictEqual(171);
   });
   it('TC3', () => {
-    expect(solution(`1 2 3`)).toStrictEqual(5266);
-  });
-  it('TC4', () => {
-    expect(solution(`15 28 19`)).toStrictEqual(7980);
+    expect(solution(`12`)).toStrictEqual(2731);
   });
 });
