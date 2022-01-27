@@ -8,8 +8,8 @@ const solution = function (i) {
     DP[i] = (DP[i - 1] + 2 * DP[i - 2]) % 10007;
   }
 
-  console.log(DP[i]);
-  return DP[i];
+  console.log(DP[N]);
+  return DP[N];
 };
 
 describe('2xn 타일링 2', () => {
