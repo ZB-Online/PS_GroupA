@@ -13,19 +13,18 @@ const solution = (input) => {
 
     dp[0] = 0;
 
-    for (let i = 2; i <= 1000000; i++) {
-        for (let j = 1; i * j <= 1000000; j++) {
+    for (let i = 2; i <= 1000000; i += 1) {
+        for (let j = 1; i * j <= 1000000; j += 1) {
             sieve[i * j] += i;
         }
     }
-
-    for (let i = 1; i <= 1000000; i++) {
+    for (let i = 1; i <= 1000000; i += 1) {
         dp[i] = dp[i - 1] + sieve[i];
     }
 
     let res = '';
 
-    for (let i = 0; i < N; i++) {
+    for (let i = 0; i < N; i += 1) {
         res += `${dp[nums[i]]}\n`;
     }
 

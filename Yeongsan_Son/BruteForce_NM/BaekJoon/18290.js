@@ -52,8 +52,7 @@ const sol = function (i) {
 
   dfs(0, 0, 0, 0);
 
-  console.log(max);
-  return max + '';
+  return max;
 };
 
 test('TC1', () => {

@@ -17,7 +17,7 @@ const solution = (input) => {
             console.log(count);
             process.exit();
         }
-        count++;
+        count += 1;
     }
 };
 solution(`1 2 3`);
