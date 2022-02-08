@@ -7,7 +7,6 @@ const solution = (input) => {
 
     const dp = [...nums];
 
-    dp[0] = nums[0];
     let max = dp[0];
 
     for (let i = 1; i < n; i += 1) {

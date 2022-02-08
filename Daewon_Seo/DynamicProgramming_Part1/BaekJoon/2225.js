@@ -1,5 +1,11 @@
 const solution = (input) => {
-  const N = input.toString().trim();
+    const [N, K] = input
+        .toString()
+        .trim()
+        .split(' ')
+        .map((el) => +el);
+
+    const nArr = Array.from({ length: N + 1 }, (_, i) => i);
 };
 
-solution(``);
+solution(`20 2`);
