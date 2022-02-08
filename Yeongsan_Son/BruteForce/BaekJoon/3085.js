@@ -1,3 +1,5 @@
+// 사탕게임
+
 function sol(s) {
   const input = s.toString().trim().split('\n');
   const N = +input[0];
@@ -55,7 +57,7 @@ function sol(s) {
       for (let k = 0; k < 4; k++) {
         if (swap(i, j, k)) {
           search();
-          swap(i, j, k);
+          swap(i, j, k); // true를 false로 변경
         }
       }
     }

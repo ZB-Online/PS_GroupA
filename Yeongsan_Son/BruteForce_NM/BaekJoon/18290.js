@@ -1,7 +1,60 @@
-function sol(s) {
-  const input = s.toString().trim().split('\n');
-  console.log(input);
-}
+const sol = function (i) {
+  const [NMK, ...arr] = i.toString().trim().split('\n');
+  const [N, M, K] = NMK.split(' ').map(el => +el);
+  const grid = arr.map(el => el.split(' ').map(el => +el));
+
+  let checked = Array.from({ length: N }, () => Array(M).fill(false));
+
+  const dx = [1, 0, -1, 0];
+  const dy = [0, 1, 0, -1];
+
+  const checkNext = (row, col) => {
+    for (let i = 0; i < 4; i++) {
+      const nx = row + dx[i];
+      const ny = col + dy[i];
+
+      const invalidRow = nx < 0 || nx >= N;
+      const invalidCol = ny < 0 || ny >= M;
+
+      if (!invalidRow && !invalidCol && checked[nx][ny]) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  let max = Number.MIN_SAFE_INTEGER;
+
+  const res = [];
+
+  const dfs = (row, col, cnt, sum) => {
+    if (cnt === K) {
+      max = Math.max(sum, max);
+      return;
+    }
+
+    for (let i = row; i < N; i++) {
+      // row
+      for (let j = col; j < M; j++) {
+        // col
+        if (!checked[i][j]) {
+          if (!checkNext(i, j)) {
+            checked[i][j] = true;
+            res.push(grid[i][j]);
+            dfs(row, col, cnt + 1, sum + grid[i][j]);
+            res.pop();
+            checked[i][j] = false;
+          }
+        }
+      }
+    }
+  };
+
+  dfs(0, 0, 0, 0);
+
+  console.log(max);
+  return max + '';
+};
 
 test('TC1', () => {
   expect(

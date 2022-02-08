@@ -1,6 +1,10 @@
 function sol(s) {
   const input = s.toString().trim().split('\n');
-  console.log(input);
+  const N = +input[0];
+  const arr = input[1].split(' ').map(Number);
+  const sortedArr = [...arr].sort((a, b) => b - a);
+  console.log(arr, sortedArr);
+  if (arr.every((el, idx) => el === sortedArr[idx])) return '-1'; // validation
 }
 
 test('TC1', () => {
