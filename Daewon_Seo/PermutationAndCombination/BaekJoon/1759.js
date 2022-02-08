@@ -27,25 +27,25 @@ const solution = (s) => {
     return res;
 };
 
-// solution(`4 6
-// a t c i s w`);
+solution(`4 6
+a t c i s w`);
 
-test('TC1', () => {
-    expect(
-        solution(`4 6
-a t c i s w`)
-    ).toStrictEqual(`acis
-acit
-aciw
-acst
-acsw
-actw
-aist
-aisw
-aitw
-astw
-cist
-cisw
-citw
-istw`);
-});
+// test('TC1', () => {
+//     expect(
+//         solution(`4 6
+// a t c i s w`)
+//     ).toStrictEqual(`acis
+// acit
+// aciw
+// acst
+// acsw
+// actw
+// aist
+// aisw
+// aitw
+// astw
+// cist
+// cisw
+// citw
+// istw`);
+// });
