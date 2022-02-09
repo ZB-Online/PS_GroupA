@@ -1,9 +1,17 @@
 const solution = (input) => {
-    const [n, nums] = input
-        .toString()
-        .trim()
-        .split('\n')
-        .map((el, i) => (i === 0 ? +el : el.split(' ').map((num) => +num)));
+    const N = Number(input.toString().trim());
+
+    const mod = 9901;
+
+    const dp = Array(N + 1).fill(1);
+
+    dp[1] = 3;
+
+    for (let i = 2; i <= N; i += 1) {
+        dp[i] = dp[i - 1] * 2 + 2 ** (i - 1) - 1;
+    }
+
+    console.log(dp[N] % mod);
 };
 
-solution(``);
+solution(`2`);
