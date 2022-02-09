@@ -5,15 +5,15 @@ const solution = (input) => {
         .split('\n')
         .map((el, i) => (i === 0 ? +el : el.split(' ').map((num) => +num)));
 
-    const dp = Array.from({ length: cardPacks.length + 1 }, () => 0);
+    const dp = [0, ...cardPacks];
 
-    for (let i = 1; i <= N; i++) {
-        for (let j = 1; j <= i; j++) {
-            dp[i] = Math.max(dp[i], dp[i - j] + cardPacks[j - 1]);
+    for (let i = 2; i <= N; i += 1) {
+        for (let j = 1; j <= i / 2; j += 1) {
+            dp[i] = Math.max(dp[i], dp[j] + dp[i - j]);
         }
     }
 
-    console.log(dp);
+    console.log(dp[N]);
 };
-solution(`4
-1 5 6 7`);
+solution(`5
+10 9 8 7 6`);
