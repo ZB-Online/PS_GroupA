@@ -8,10 +8,10 @@ const solution = (input) => {
     dp[1] = 3;
 
     for (let i = 2; i <= N; i += 1) {
-        dp[i] = dp[i - 1] * 2 + 2 ** (i - 1) - 1;
+        dp[i] = (dp[i - 1] * 2 + dp[i - 2]) % mod;
     }
 
-    console.log(dp[N] % mod);
+    console.log(dp[N]);
 };
 
-solution(`2`);
+solution(`4`);
