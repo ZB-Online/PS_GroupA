@@ -1,9 +1,22 @@
-const solution = (input) => {
-    const [n, nums] = input
-        .toString()
-        .trim()
-        .split('\n')
-        .map((el, i) => (i === 0 ? +el : el.split(' ').map((num) => +num)));
-};
+const [n, ...nums] = require('fs')
+    .readFileSync('/dev/stdin')
+    .toString()
+    .trim()
+    .split('\n')
+    .map((el) => +el);
 
-solution(``);
+const dp = Array.from({ length: 1000001 });
+
+const mod = 1000000009;
+
+dp[1] = 1;
+dp[2] = 2;
+dp[3] = 4;
+
+for (let i = 4; i <= 1000000; i += 1) {
+    dp[i] = (dp[i - 1] + dp[i - 2] + dp[i - 3]) % mod;
+}
+
+for (let i = 0; i < n; i += 1) {
+    console.log(dp[nums[i]]);
+}
