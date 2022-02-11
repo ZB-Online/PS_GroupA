@@ -21,6 +21,8 @@ const solution = (input) => {
         }
     }
 
+    console.log(dp);
+
     console.log(Math.max(...dp[height]));
 };
 
